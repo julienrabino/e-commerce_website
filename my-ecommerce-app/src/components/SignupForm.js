@@ -11,8 +11,7 @@ const SignupForm = ({setFormType})=>{
         setFormType(true);
     }
 
-    const handleSubmit = (event) => {
-        console.log("password",password, "username",username, "email", email, "pw",confirmPassword);
+    async function handleSubmit(event)  {
         event.preventDefault();
         if (!password || !username || !email || !confirmPassword){
             console.log("All fields are required");
@@ -29,10 +28,41 @@ const SignupForm = ({setFormType})=>{
 
         
     
-        setMessage('Signed up successfully!');
         console.log("Form submitted successfully!");
+        
+        const backendEndpoint = 'http://127.0.0.1:5000/login';
+        try{
+            const response = await fetch(backendEndpoint, {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'username':username,
+                    'password': password,
+                    'email': email,
+                    'form-type': 'signup',
+                
+                }),
+            
+                
+            });
+            const data = await response.json();
+            if (response.ok){
+                console.log(data);
+                console.log("Form submitted successfully!");
 
-    };
+            }
+            else{
+                console.log("Username already exists")
+            }
+            setMessage(data.message);
+
+        } catch(error){
+            console.error('Error during form submission: ', error);
+        }
+
+    }
     return(
         <div>
         <h2> Signup</h2>

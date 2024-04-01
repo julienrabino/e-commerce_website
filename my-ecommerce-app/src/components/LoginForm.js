@@ -4,17 +4,15 @@ const LoginForm = ({setFormType}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
-    const handleSubmit = (event) => {
+    async function handleSubmit (event) {
         event.preventDefault();
         if (!password || !username){
             setMessage('All fields are required');
             return;
         }
-        setUsername('');
-        setPassword('');
-        setMessage('');
+       setMessage('Login successful!')
 
-    };
+    }
 
     function switchToSignup(){
         setFormType(false);
