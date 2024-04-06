@@ -99,16 +99,13 @@ products = [
 ]    
 
 # @app.route('/ProductList', methods =['GET'])
+
 @app.route ('/products' , methods =['GET']) 
-@app.route ('/products/<int:product_id>' ,methods =['GET']) 
+# @app.route ('/products/<int:product_id>' ,methods =['GET']) 
 
 def get_products (product_id = None) : 
     testProducts = products
-    if product_id is None : 
-        return {"products": testProducts }
-    else: 
-        product = next (( p for p in testProducts if p ['id'] == product_id ) , None ) 
-        return product if product else (' ' , 404) 
-
+    return testProducts 
+    
 if __name__ == '__main__':
     app.run()
