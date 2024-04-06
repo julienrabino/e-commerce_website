@@ -105,10 +105,10 @@ products = [
 def get_products (product_id = None) : 
     testProducts = products
     if product_id is None : 
-        return jsonify ({"products": testProducts }) 
+        return {"products": testProducts }
     else: 
         product = next (( p for p in testProducts if p ['id'] == product_id ) , None ) 
-        return jsonify(product) if product else (' ' , 404) 
+        return product if product else (' ' , 404) 
 
 if __name__ == '__main__':
     app.run()
