@@ -63,7 +63,8 @@ const Productpage = () => {
       <table>
         <tbody>
           <tr>
-            <td><ProductList products={productsData} onAddToCart={addToCart} /></td>
+            <td><Route path = '/products' element = {<ProductList products={get_products()} onAddToCart={addToCart}/>}/></td>
+            {/* <td><ProductList products={} onAddToCart={addToCart} /></td> */}
             <td style={{ verticalAlign: 'top' }}><Cart cartItems={cartItems} onRemove={removeFromCart} /></td>
           </tr>
         </tbody>
