@@ -23,9 +23,9 @@ const LoginForm = ({setFormType}) => {
                 body: JSON.stringify({
                     'username':username,
                     'password': password,
-                    'form-type': 'login',
+                    'form-type': 'login'
                 }),
-            
+                
                 
             });
             const data = await response.json();
@@ -35,7 +35,7 @@ const LoginForm = ({setFormType}) => {
 
             }
             else{
-                console.log("Username already exists")
+                console.log("Incorrect Username or Password")
             }
             setMessage(data.message);
 
