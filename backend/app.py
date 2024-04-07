@@ -22,8 +22,11 @@ def authenticate():
         return jsonify({'message': 'Signup successful!'}), 200
     
     elif data['form-type']=='login':
-        #code for login authentication
-        print()
+        # for user in users:
+        #     if user['username'] == True:
+        #         if user['password'] == entered_password:
+        #             return jsonify({'message':'Successful login'}), 200
+        return jsonify({'message': 'Incorrect Username or Password'}), 400
         
 products = [
     {

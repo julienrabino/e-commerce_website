@@ -4,13 +4,44 @@ const LoginForm = ({setFormType}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+
     async function handleSubmit (event) {
         event.preventDefault();
         if (!password || !username){
             setMessage('All fields are required');
             return;
         }
-       setMessage('Login successful!')
+       console.log("Form submitted successfully!");
+        
+        const backendEndpoint = 'http://127.0.0.1:5000/login';
+        try{
+            const response = await fetch(backendEndpoint, {
+                method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    'username':username,
+                    'password': password,
+                    'form-type': 'login',
+                }),
+            
+                
+            });
+            const data = await response.json();
+            if (response.ok){
+                console.log(data);
+                console.log("Form submitted successfully!");
+
+            }
+            else{
+                console.log("Username already exists")
+            }
+            setMessage(data.message);
+
+        } catch(error){
+            console.error('Error during form submission: ', error);
+        }
 
     }
 
