@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import {useNavigate} from "react-router-dom";
 
 const LoginForm = ({setFormType}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [sendToProducts, setSendToProducts] = useState(false);
+    const navigate = useNavigate();
 
     async function handleSubmit (event) {
         event.preventDefault();
@@ -11,7 +14,7 @@ const LoginForm = ({setFormType}) => {
             setMessage('All fields are required');
             return;
         }
-       console.log("Form submitted successfully!");
+        console.log("Form submitted successfully!");
         
         const backendEndpoint = 'http://127.0.0.1:5000/login';
         try{
@@ -32,19 +35,20 @@ const LoginForm = ({setFormType}) => {
             if (response.ok){
                 console.log(data);
                 console.log("Form submitted successfully!");
-
+                setSendToProducts(true);
             }
             else{
                 console.log("Incorrect Username or Password")
             }
             setMessage(data.message);
-
+            
         } catch(error){
             console.error('Error during form submission: ', error);
-        }
-
+        } 
     }
-
+    if (sendToProducts){
+        navigate("/products");
+    }
     function switchToSignup(){
         setFormType(false);
     }
