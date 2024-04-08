@@ -23,15 +23,16 @@ const App = () => {
       localStorage.clear();
     }else{
       setLoggedIn(false)
-      localStorage.setItem('Approve', 'false');
+      // localStorage.setItem('Approve', 'false');
     }
   }, [])
+  
   return (
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={loggedIn ? <Productpage/>: <Homepage />} />
-          <Route path="/products" element={loggedIn  ? <Productpage/>: <Loginpage/>} />  
+          <Route path="/" element={localStorage.getItem('Approve') ? <Productpage/>: <Homepage />} />
+          <Route path="/products" element={localStorage.getItem('Approve')  ? <Productpage/>: <Loginpage/>} />  
           <Route path="/login" element={<Loginpage/>} />  
         </Routes>
       </div>

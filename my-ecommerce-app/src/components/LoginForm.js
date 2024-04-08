@@ -37,11 +37,12 @@ const LoginForm = ({setFormType}) => {
                 console.log(data);
                 console.log("Form submitted successfully!");
                 setSendToProducts(true);
-                localStorage.setItem('Approve', "true")
+                localStorage.setItem('Approve', true);
+                window.location.href = '/products';
             }
             else{
                 console.log("Incorrect Username or Password")
-                localStorage.setItem('Approve', "false")
+                localStorage.setItem('Approve', false)
                 
             }
             setMessage(data.message);
