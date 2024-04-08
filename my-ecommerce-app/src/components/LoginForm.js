@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {useNavigate} from "react-router-dom";
 
+
 const LoginForm = ({setFormType}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -36,9 +37,12 @@ const LoginForm = ({setFormType}) => {
                 console.log(data);
                 console.log("Form submitted successfully!");
                 setSendToProducts(true);
+                localStorage.setItem('Approve', true)
             }
             else{
                 console.log("Incorrect Username or Password")
+                localStorage.setItem('Approve', false)
+                
             }
             setMessage(data.message);
             
