@@ -31,7 +31,7 @@ const App = () => {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={localStorage.getItem('Approve') ? <Productpage/>: <Homepage />} />
+          <Route path="/" element={<Homepage />} />
           <Route path="/products" element={localStorage.getItem('Approve')  ? <Productpage/>: <Loginpage/>} />  
           <Route path="/login" element={<Loginpage/>} />  
         </Routes>
